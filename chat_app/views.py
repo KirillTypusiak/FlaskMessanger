@@ -1,7 +1,7 @@
 from flask import render_template
 from .app import chat_app_blueprint
 
-@chat_app_blueprint.route("/registration")
+@chat_app_blueprint.route("/reg")
 def render_registration():
     return render_template("register.html")
 

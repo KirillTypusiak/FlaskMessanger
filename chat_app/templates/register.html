@@ -5,5 +5,30 @@
 {% endblock %}
 
 {% block content %}
-    <p>Registration</p>
+<div class="register">
+    <a class="register_loginbtn">Увійти</a>
+    <div class="register_logo">
+        <h1>WORLD IT</h1>
+    </div>
+
+    <h2 class="register_title">Створити обліковий запис</h2>
+
+    <form class="register_form">
+        <label class="field">
+            <p class="field_label">Введіть вашу електронну пошту нижче, щоб створити обліковий запис</p>
+            <input class="field_input" type="email" name="email">
+        </label>
+
+        <label class="field">
+            <p class="field_label">Задайте ваш пароль нижче, щоб створити обліковий запис</p>
+            <input class="field_input" type="password" name="password">
+        </label>
+
+        <button class="register_submit" type="submit">Надіслати код підтвердження</button>
+    </form>
+
+    <p class="register_terms">Натискаючи «Продовжити», ви погоджуєтеся з нашими Умовами обслуговуваннята Політикою конфіденційності</p>
+
+    <img class="register_png" src="" alt="children with pc">
+</div>
 {% endblock %}

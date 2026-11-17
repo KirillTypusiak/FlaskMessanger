@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+}
+
+.register_loginbtn{
+    position: fixed;
+    top: 24px;
+    right: 40px;
+    padding: 9px 20px;
+    font-size: 14px;
+    color: black;
+    background: white;
+    border: 1px solid grey;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.register_logo{
+    margin-bottom: 20px;
+    color: #3b9ff0;
+    font-size: 20px;
+}
+
+.register_title{
+    margin: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.field{
+    display: block;
+    margin-bottom: 18px;
+}
+
+.field_label{
+    display: block;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: grey;
+}
+
+.field_input{
+    width: 100%;
+    height: 42px;
+    padding: 0 14px;
+    color: black;
+    background: white;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+
+.register_submit{
+    width: 100%;
+    height: 42px;
+    color: white;
+    background: black;
+    border-radius: 8px;
+    cursor: pointer;
+    border:none;
+}
+
+.register_terms{
+    max-width: 280px;
+    margin: 28px 0 24px;
+    font-size: 12px;
+    text-align: center;
+    color: grey;
+}
