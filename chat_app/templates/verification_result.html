@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block links %} 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href= "{{ url_for('chat.static', filename='css/waiting_screen.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="waiting">
+    <img src="{{ url_for('static', filename='images/reg_logo.png') }}" alt="world it logo" class="waiting-logo">
+
+    <h1 class="waiting-title">{{ title }}</h1>
+
+    <p class="waiting-description">
+        {{ description }}
+    </p>
+
+    {% if success %}
+        <a href="/" class="waiting-open-mail">Перейти до месенджера</a>
+    {% else %}
+        <a href="{{ url_for('chat.render_registration') }}" class="waiting-open-mail">Повернутися до реєстрації</a>
+    {% endif %}
+
+    <img src="{{ url_for('static', filename='images/ChildrenWithPc.png') }}" alt="children with pc" class="waiting-img">
+</div>
+{% endblock %}

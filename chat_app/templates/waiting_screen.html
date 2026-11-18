@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block links %} 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href= "{{ url_for('chat.static', filename='css/waiting_screen.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="waiting">
+    <img src="{{ url_for('static', filename='images/reg_logo.png') }}" alt="world it logo" class="waiting-logo">
+
+    <h1 class="waiting-title">Успіх</h1>
+
+    <p class="waiting-description">
+        Ми надіслали вам електронний лист з магічним посиланням для підтвердження вашого облікового запису.<br>
+        Будь ласка, перевірте свою поштову скриньку та натисніть на посилання.
+    </p>
+
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+        <p class="{{ category }}">{{ message }}</p>
+    {% endfor %}
+
+    <p id="resend-error" class="error" hidden></p>
+
+    {% if mail_url %}
+        <a href="{{ mail_url }}" class="waiting-open-mail"
+        target="_blank" rel="noopener noreferrer">
+            Відкрити електронну пошту
+        </a>
+    {% endif %}
+
+    <button type="button" id="resend-button" data-remaining="{{ remaining_seconds }}" disabled>
+        Надіслати лист повторно
+    </button>
+
+    <img src="{{ url_for('static', filename='images/ChildrenWithPc.png') }}" alt="children with pc" class="waiting-img">
+</div>
+
+<script src="{{ url_for('chat.static', filename='js/waiting.js') }}"></script>
+
+{% endblock %}
