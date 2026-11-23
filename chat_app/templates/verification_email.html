@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Підтвердження електронної пошти</title>
     <style>
         .outside-table{
             width: 100%;
@@ -74,14 +74,25 @@
                 </tr>
                 <tr>
                     <td>
-                        <a class="confirm-letter-button" href="{{ verification_url }}">Підтвердити пошту</a>
+                        <a class="confirm-letter-button" href="{{ verification_url }}" target="_blank"
+                           style="display: block; text-align: center; padding: 10px 0; text-decoration: none; background-color: #090b1c; color: #ffffff; border-radius: 8px; font-size: 16px;">
+                            Підтвердити пошту
+                        </a>
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" style="padding: 30px 0;">
-                        <img class="image-letter" src="{{ image_url }}" alt="children with pc">
+                    <td style="padding-top: 16px; font-size: 13px; color: #5c5f73; line-height: 1.4;">
+                        Якщо кнопка не працює, скопіюйте це посилання в браузер:<br>
+                        <a href="{{ verification_url }}" style="color: #090b1c; word-break: break-all;">{{ verification_url }}</a>
                     </td>
                 </tr>
+                {% if image_url %}
+                <tr>
+                    <td align="center" style="padding: 30px 0;">
+                        <img class="image-letter" src="{{ image_url }}" alt="children with pc" width="340" style="width: 100%; max-width: 340px; height: auto;">
+                    </td>
+                </tr>
+                {% endif %}
                 <tr>
                     <td>
                         <hr>
