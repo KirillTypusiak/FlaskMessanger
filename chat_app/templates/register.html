@@ -15,17 +15,17 @@
 
     <form class="register_form" method="post">
         <label class="field">
-            <p class="field_label">Введіть вашу електронну пошту нижче, щоб створити обліковий запис</p>
+            <p class="field_label"><span class="field_label_long">Введіть вашу електронну пошту нижче, щоб створити обліковий запис</span><span class="field_label_short">Електронна пошта</span></p>
             <input class="field_input" type="email" name="email" placeholder="name@example.com" required autocomplete="email" value="{{ email | default('', true) }}">
         </label>
 
         <label class="field">
-            <p class="field_label">Задайте ваш пароль нижче, щоб створити обліковий запис</p>
+            <p class="field_label"><span class="field_label_long">Задайте ваш пароль нижче, щоб створити обліковий запис</span><span class="field_label_short">Пароль</span></p>
             <input class="field_input" type="password" name="password" placeholder="*************" required minlength="8" autocomplete="new-password">
         </label>
         
         <label class="field">
-            <p class="field_label">Перевірка паролю</p>
+            <p class="field_label"><span class="field_label_long">Перевірка паролю</span><span class="field_label_short">Повторіть пароль</span></p>
             <input class="field_input" type="password" name="confirm_password" placeholder="*************" required minlength="8" autocomplete="new-password">
         </label>
 

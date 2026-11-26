@@ -1,0 +1,25 @@
+/*
+    Загальні стилі для всіх сторінок (підключаються в base.html).
+
+    Ховаємо смугу прокрутки (повзунок) справа.
+    Сама прокрутка колесом/тачпадом при цьому лишається - це запасний
+    варіант на випадок дуже великого зуму, коли навіть найкоротша версія
+    сторінки не влазить. У звичайних випадках сторінка влазить у вікно
+    без прокрутки завдяки адаптації в chat_app/static/css/*.css
+*/
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* старий Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;                  /* Chrome, Edge, Safari, Opera */
+}

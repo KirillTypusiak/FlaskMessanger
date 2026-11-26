@@ -11,8 +11,12 @@
     align-items: center;
     width: 100%;
     max-width: 560px;
+    /* Сторінка займає рівно висоту вікна - тому повзунка немає */
+    height: 100vh;
+    height: 100dvh;
     margin: 0 auto;
     padding: 20px 20px 24px;
+    font-family: Arial, sans-serif;
     .register_form {
         width: 100%;
     }
@@ -55,6 +59,11 @@
     color: grey;
 }
 
+/* Короткий підпис показується тільки при великому зумі */
+.field_label_short{
+    display: none;
+}
+
 .field_input{
     width: 100%;
     height: 42px;
@@ -94,7 +103,16 @@
     color: grey;
 }
 
-.register_png {
+/* Усі блоки, крім картинки, не стискаються */
+.register > * {
+    flex-shrink: 0;
+}
+
+/* Картинка забирає все вільне місце, що лишилося,
+   і плавно зменшується, коли вікно стає нижчим (зум) */
+.register > .register_png {
+    flex: 1 1 0;
+    min-height: 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -102,9 +120,11 @@
 
 .register_png_img {
     width: 100%;
+    height: 100%;
     max-width: 500px;
     max-height: 345px;
     object-fit: contain;
+    object-position: top center;
     display: block;
 }
 
@@ -112,4 +132,111 @@
     width: 200px;
     height: auto;
     display: block;
+}
+
+
+/* ===================================================================
+   Адаптація під зум (Ctrl + плюс / Ctrl + колесо).
+   Під час зуму браузер "зменшує" вікно в CSS-пікселях, тому
+   орієнтуємося на висоту і ширину вікна й поступово прибираємо
+   другорядне, щоб у центрі лишалася форма.
+   =================================================================== */
+
+/* Кнопка "Увійти" не наїжджає на форму, коли вікно вузьке */
+@media (max-width: 760px) {
+    .register_loginbtn {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .register_loginbtn {
+        position: static;
+        align-self: flex-end;
+        margin-bottom: 8px;
+    }
+}
+
+/* Крок 1: картинка стала надто дрібною - прибираємо її,
+   а форму ставимо по центру вікна */
+@media (max-height: 600px) {
+    .register > .register_png {
+        display: none;
+    }
+
+    .register {
+        justify-content: center;
+    }
+}
+
+/* Крок 2: прибираємо текст про умови і трохи стискаємо відступи */
+@media (max-height: 540px) {
+    .register_terms {
+        display: none;
+    }
+
+    .register_title {
+        margin: 8px 0 12px;
+        font-size: 22px;
+    }
+
+    .register {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+
+/* Крок 3: довгі підписи над полями замінюємо короткими */
+@media (max-height: 460px) {
+    .field_label_long {
+        display: none;
+    }
+
+    .field_label_short {
+        display: inline;
+    }
+
+    .field_label {
+        margin-bottom: 3px;
+        font-size: 12px;
+    }
+
+    .field {
+        margin-bottom: 10px;
+    }
+}
+
+/* Крок 4: прибираємо логотип, лишається тільки форма */
+@media (max-height: 380px) {
+    .register_logo {
+        display: none;
+    }
+
+    .register_title {
+        margin: 0 0 10px;
+        font-size: 20px;
+    }
+
+    .field {
+        margin-bottom: 8px;
+    }
+
+    .field_input,
+    .register_submit {
+        height: 38px;
+    }
+}
+
+/* Кнопка "Увійти" стає в один рядок із заголовком (праворуч),
+   щоб не наїжджати на поля, коли форма піднялася вгору */
+@media (max-height: 380px) and (min-width: 481px) {
+    .register_loginbtn {
+        position: static;
+        align-self: flex-end;
+        margin-bottom: -30px;
+        padding: 6px 14px;
+        font-size: 13px;
+    }
 }
