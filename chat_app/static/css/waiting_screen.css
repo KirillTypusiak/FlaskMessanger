@@ -4,11 +4,18 @@
     align-items: center;
     margin: 0 auto;
     max-width: 560px;
+    /* Екран займає рівно висоту вікна - тому повзунка немає */
+    height: 100vh;
+    height: 100dvh;
     padding: 24px 20px;
     text-align: center;
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
+}
 
+/* Усі блоки, крім картинки, не стискаються */
+.waiting > * {
+    flex-shrink: 0;
 }
 
 .waiting-logo{
@@ -51,10 +58,16 @@
     transition: background-color 0.25s, opacity 0.25s;
 }
 
-.waiting-img{
+/* Картинка забирає вільне місце, що лишилося,
+   і плавно зменшується, коли вікно стає нижчим (зум) */
+.waiting > .waiting-img{
+    flex: 1 1 0;
+    min-height: 0;
     max-width: 460px;
+    max-height: 390px;
     width: 100%;
-    height: auto;
+    object-fit: contain;
+    object-position: top center;
 }
 
 #resend-button {
@@ -75,4 +88,64 @@
     color: #dc2626;
     font-size: 14px;
     margin: 0 0 16px;
+}
+
+
+/* ===================================================================
+   Адаптація під зум (Ctrl + плюс / Ctrl + колесо).
+   Під час зуму браузер "зменшує" вікно в CSS-пікселях, тому
+   орієнтуємося на висоту вікна й поступово прибираємо другорядне.
+   =================================================================== */
+
+/* Крок 1: картинка стала надто дрібною - прибираємо її,
+   а вміст ставимо по центру вікна */
+@media (max-height: 560px) {
+    .waiting > .waiting-img {
+        display: none;
+    }
+
+    .waiting {
+        justify-content: center;
+    }
+
+    #resend-button {
+        margin-bottom: 0;
+    }
+}
+
+/* Крок 2: стискаємо відступи і текст */
+@media (max-height: 480px) {
+    .waiting {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .waiting-logo {
+        width: 180px;
+        margin-bottom: 16px;
+    }
+
+    .waiting-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .waiting-description {
+        font-size: 14px;
+        line-height: 1.45;
+        margin-bottom: 16px;
+    }
+}
+
+/* Крок 3: прибираємо логотип, лишається тільки головне */
+@media (max-height: 380px) {
+    .waiting-logo {
+        display: none;
+    }
+
+    .waiting-open-mail,
+    #resend-button {
+        height: 38px;
+        margin-bottom: 8px;
+    }
 }
