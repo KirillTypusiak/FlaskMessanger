@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="register">
-    <a class="register_loginbtn">Увійти</a>
+    <a class="register_loginbtn" href="{{ url_for('chat.render_auth') }}">Увійти</a>
     <div class="register_logo">
         <img class="register_logo_img" src="{{ url_for('static', filename='images/reg_logo.png') }}" alt="WORLD IT">
     </div>

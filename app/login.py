@@ -13,7 +13,7 @@ LOGIN_MANAGER = flask_login.LoginManager(
     app = main_app
 )
 
-LOGIN_MANAGER.login_view = "chat.render_registration"
+LOGIN_MANAGER.login_view = "chat.render_auth"
 LOGIN_MANAGER.login_message = None
 
 @LOGIN_MANAGER.user_loader 

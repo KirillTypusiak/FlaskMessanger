@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block links %} 
+    <link rel="stylesheet" href= "{{ url_for('chat.static', filename='css/style.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="register">
+    <a class="register_loginbtn" href="{{ url_for('chat.render_registration') }}">Зареєструватися</a>
+    <div class="register_logo">
+        <img class="register_logo_img" src="{{ url_for('static', filename='images/reg_logo.png') }}" alt="WORLD IT">
+    </div>
+
+    <h2 class="register_title">Увійти</h2>
+
+    <form class="register_form" method="post">
+        <label class="field">
+            <p class="field_label">Введіть вашу електронну пошту нижче, щоб увійти до облікового запису</p>
+            <input class="field_input" type="email" name="email" placeholder="name@example.com" required autocomplete="email" value="{{ email | default('', true) }}">
+        </label>
+
+        <label class="field">
+            <p class="field_label">Задайте ваш пароль нижче, щоб увійти до обліковогу запису</p>
+            <input class="field_input" type="password" name="password" placeholder="*************" autocomplete="current-password">
+        </label>
+        
+
+        {% if error %}
+            <p class="register_error">{{ error }}</p>
+        {% endif %}
+
+        <button class="register_submit" type="submit">Увійти</button>
+    </form>
+
+    <p class="register_terms">
+        Натискаючи «Увійти», ви погоджуєтеся з нашими<br>Умовами обслуговування та Політикою конфіденційності
+    </p>
+
+    <div class="register_png">
+        <img class="register_png_img" src="{{ url_for('static', filename='images/ChildrenWithPc.png') }}" alt="children with pc">
+    </div>
+    
+</div>
+{% endblock %}

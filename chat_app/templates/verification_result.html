@@ -18,7 +18,7 @@
     </p>
 
     {% if success %}
-        <a href="/" class="waiting-open-mail">Перейти до месенджера</a>
+        <a href="{{ url_for('chat.render_auth') }}" class="waiting-open-mail">Увійти в аккаунт</a>
     {% else %}
         <a href="{{ url_for('chat.render_registration') }}" class="waiting-open-mail">Повернутися до реєстрації</a>
     {% endif %}

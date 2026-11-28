@@ -28,7 +28,7 @@ def render_registration():
             flask.session.pop("pending_user_id", None)
         
     if flask.request.method == "POST":
-        email = flask.request.form.get("email")
+        email = flask.request.form.get("email", "").lower().strip()
         password = flask.request.form.get("password")
         confirm_password = flask.request.form.get("confirm_password")
         
@@ -160,9 +160,9 @@ def waiting_verification():
         return render_template("waiting_screen.html", **data)
     
     else:
-        flask_login.login_user(user)
+        # flask_login.login_user(user, remember=True)
         flask.session.pop("pending_user_id", None)
-        return flask.redirect("/")
+        return flask.redirect(flask.url_for("chat.render_auth"))
     
 @chat_app_blueprint.route("/verification_status")
 def verification_status():
@@ -212,3 +212,40 @@ def resend_verification():
         user.last_verification_sent_at = datetime.now(timezone.utc).replace(tzinfo=None)
         DATABASE.session.commit()
     return flask.jsonify({"success": True})
+
+@chat_app_blueprint.route("/login", methods=["POST", "GET"])
+def render_auth():
+    
+    print("Authenticated:", flask_login.current_user.is_authenticated)
+    print("User ID:", flask_login.current_user.get_id())
+    print("Session:", dict(flask.session))
+    
+    if flask_login.current_user.is_authenticated:
+        return flask.redirect("/")
+    
+    if flask.request.method == "GET":
+        return render_template("auth.html")
+    
+    if flask.request.method == "POST":
+        email = flask.request.form.get("email", "").strip().lower()
+        password = flask.request.form.get("password")
+        
+        user = User.query.filter_by(email=email).first()
+        
+        if not user or not werkzeug.security.check_password_hash(user.password_hash, password):
+            return render_template(
+                "auth.html",
+                error="Невірна електронна пошта або пароль. Якщо у вас ще немає облікового запису, зареєструйтеся.",
+                email=email
+            ), 401
+            
+        if user.is_verified:
+            flask_login.login_user(user, remember=True)
+            return flask.redirect("/")
+        else:
+            return render_template(
+                "auth.html",
+                error="Будь ласка, підтвердьте свою електронну пошту.",
+                email=email
+            ), 403
+            

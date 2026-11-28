@@ -14,6 +14,7 @@
 .waiting-logo{
     width: 220px;
     margin-bottom: 28px;
+    max-width: 100%;
 }
 
 .waiting-title{
@@ -33,7 +34,8 @@
 #resend-button {
     max-width: 360px;
     width: 100%;
-    height: 45px;
+    min-height: 45px;
+    padding: 10px 16px;
     background-color: #090b1c;
     border-radius: 8px;
     color: white;
@@ -55,6 +57,8 @@
     max-width: 460px;
     width: 100%;
     height: auto;
+    max-height: clamp(100px, 40dvh, 345px);
+    object-fit: contain;
 }
 
 #resend-button {
@@ -75,4 +79,25 @@
     color: #dc2626;
     font-size: 14px;
     margin: 0 0 16px;
+}
+
+@media (max-height: 800px) {
+    .waiting {
+        padding: 12px 20px;
+    }
+
+    .waiting-logo {
+        width: 180px;
+        margin-bottom: 16px;
+    }
+
+    .waiting-description {
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-height: 600px) {
+    .waiting-img {
+        display: none;
+    }
 }

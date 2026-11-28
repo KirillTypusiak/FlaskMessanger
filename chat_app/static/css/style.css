@@ -1,8 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .register{
     position: relative;
@@ -12,7 +7,7 @@
     width: 100%;
     max-width: 560px;
     margin: 0 auto;
-    padding: 20px 20px 24px;
+    padding: 20px 20px 24px;;
     .register_form {
         width: 100%;
     }
@@ -29,6 +24,7 @@
     border: 1px solid grey;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .register_logo{
@@ -39,7 +35,7 @@
 
 .register_title{
     margin: 12px 0 18px;
-    font-size: 24px;
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -57,7 +53,8 @@
 
 .field_input{
     width: 100%;
-    height: 42px;
+    min-height: 42px;
+    font-size: 1rem;
     padding: 0 14px;
     color: black;
     background: white;
@@ -71,7 +68,9 @@
 
 .register_submit{
     width: 100%;
-    height: 42px;
+    min-height: 42px;
+    padding: 10px 16px;
+    font-size: 0.875rem;
     color: white;
     background: black;
     border-radius: 8px;
@@ -103,13 +102,42 @@
 .register_png_img {
     width: 100%;
     max-width: 500px;
-    max-height: 345px;
+    max-height: clamp(100px, 40dvh, 345px);
     object-fit: contain;
     display: block;
 }
 
 .register_logo_img {
     width: 200px;
+    max-width: 100%;
     height: auto;
     display: block;
+}
+
+@media (max-height: 800px) {
+    .register {
+        padding: 12px 20px;
+    }
+
+    .register_logo_img {
+        width: 170px;
+    }
+
+    .register_title {
+        margin: 8px 0 12px;
+    }
+
+    .field {
+        margin-bottom: 8px;
+    }
+
+    .register_terms {
+        margin: 10px 0 8px;
+    }
+}
+
+@media (max-height: 600px) {
+    .register_png {
+        display: none;
+    }
 }
