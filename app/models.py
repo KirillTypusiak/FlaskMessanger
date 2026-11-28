@@ -2,6 +2,8 @@ import flask_login
 from app.database import DATABASE as DB
 
 class User(DB.Model, flask_login.UserMixin):
+    __table_args__ = {"sqlite_autoincrement": True}
+    
     id = DB.Column(DB.Integer, primary_key = True)
     email = DB.Column(DB.String, unique = True, nullable=False)
     

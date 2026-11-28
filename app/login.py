@@ -20,4 +20,4 @@ LOGIN_MANAGER.login_message = None
 def load_user(user_id):
     user = DATABASE.session.get(User, int(user_id))
     if user is not None and user.is_verified:
-        return User.query.get(user_id)
+        return user

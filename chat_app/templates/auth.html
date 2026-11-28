@@ -19,10 +19,17 @@
             <input class="field_input" type="email" name="email" placeholder="name@example.com" required autocomplete="email" value="{{ email | default('', true) }}">
         </label>
 
-        <label class="field">
-            <p class="field_label">Задайте ваш пароль нижче, щоб увійти до обліковогу запису</p>
-            <input class="field_input" type="password" name="password" placeholder="*************" autocomplete="current-password">
-        </label>
+        <div class="field">
+            <label class="field_label" for="password">
+                Введіть ваш пароль нижче, щоб увійти до облікового запису
+            </label>
+            <div class="password_div">
+                <input required class="field_input" id="password" type="password" name="password" placeholder="*************" autocomplete="current-password">
+                <button class="password_toggle" type="button" aria-label="Показати пароль">
+                    <img src="{{ url_for('static', filename='images/eye.svg') }}" alt="">
+                </button>
+            </div>
+        </div>
         
 
         {% if error %}
@@ -41,4 +48,6 @@
     </div>
     
 </div>
+
+<script src="{{ url_for('chat.static', filename='js/password.js') }}"></script>
 {% endblock %}

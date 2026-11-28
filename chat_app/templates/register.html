@@ -19,15 +19,32 @@
             <input class="field_input" type="email" name="email" placeholder="name@example.com" required autocomplete="email" value="{{ email | default('', true) }}">
         </label>
 
-        <label class="field">
-            <p class="field_label">Задайте ваш пароль нижче, щоб створити обліковий запис</p>
-            <input class="field_input" type="password" name="password" placeholder="*************" required minlength="8" autocomplete="new-password">
+    <div class="field">
+        <label class="field_label" for="password">
+            Задайте ваш пароль нижче, щоб створити обліковий запис
         </label>
+
+        <div class="password_div">
+            <input class="field_input" id="password" type="password" name="password" placeholder="*************" required minlength="8" autocomplete="new-password">
+            <button class="password_toggle" type="button" aria-label="Показати пароль">
+                <img src="{{ url_for('static', filename='images/eye.svg') }}" alt="">
+            </button>
+        </div>
+    </div>
         
-        <label class="field">
-            <p class="field_label">Перевірка паролю</p>
-            <input class="field_input" type="password" name="confirm_password" placeholder="*************" required minlength="8" autocomplete="new-password">
+    <div class="field">
+        <label class="field_label" for="confirm_password">
+            Перевірка паролю
         </label>
+
+        <div class="password_div">
+            <input class="field_input" id="confirm_password" type="password" name="confirm_password" placeholder="*************" required minlength="8" autocomplete="new-password">
+            <button class="password_toggle" type="button" aria-label="Показати пароль">
+                <img src="{{ url_for('static', filename='images/eye.svg') }}" alt="">
+            </button>
+        </div>
+    </div>
+        
 
         {% if error %}
             <p class="register_error">{{ error }}</p>
@@ -45,4 +62,6 @@
     </div>
     
 </div>
+
+<script src="{{ url_for('chat.static', filename='js/password.js') }}"></script>
 {% endblock %}

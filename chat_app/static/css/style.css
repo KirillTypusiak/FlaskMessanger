@@ -66,6 +66,35 @@
     opacity: 1;
 }
 
+.password_div {
+    position: relative;
+    width: 100%;
+}
+
+.password_div .field_input {
+    padding-right: 48px;
+}
+
+.password_toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password_toggle img {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
 .register_submit{
     width: 100%;
     min-height: 42px;
